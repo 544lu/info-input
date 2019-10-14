@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>导出体检信息</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="layer/layer.js"></script>
+    <script>
+        function exportFunction() {
+            var startDate = $("input[name='startDate']").val();
+            var endDate = $("input[name='endDate']").val();
+            console.log(startDate);
+            console.log(endDate);
+            window.location.href="exportExcel?startDate="+startDate+"&endDate="+endDate;
+        }
+    </script>
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+</head>
+<body>
+<div class="layui-form" style="margin-top:10px;">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">日期范围</label>
+        </div>
+        <div class="layui-inline">
+            <input type="text" name="startDate" class="layui-input test-item" placeholder="yyyy-MM-dd">
+        </div>
+        <div class="layui-inline">
+            <p>-</p>
+        </div>
+        <div class="layui-inline">
+            <input type="text" name="endDate" class="layui-input test-item" placeholder="yyyy-MM-dd">
+        </div>
+    </div>
+</div>
+
+<div align="center">
+    <button type="button" name="button2" class="layui-btn" onclick="exportFunction()">导出预约数据
+    </button>
+</div>
+
+<script src="layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+    layui.use('laydate', function () {
+        var laydate = layui.laydate;
+        //同时绑定多个
+        lay('.test-item').each(function () {
+            laydate.render({
+                elem: this
+                , trigger: 'click'
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
