@@ -36,6 +36,8 @@ public class OrderView {
     private String checkerTel;
     //婚姻状况
     private String maritalSta;
+    //医院
+    private String hospital;
     //体检套餐
     private String meal;
     //预约日期
@@ -46,16 +48,18 @@ public class OrderView {
     private boolean expense;
     //体检报告是否已出
     private boolean report;
+    //体检报告备注
+    private String reportRemark;
     //备注
     private String remark;
 
-    //构造函数
+    //构造函数1
     public OrderView(Custemer custemer, Checker checker){
         this.custemerId=custemer.getCustemerId();
         this.custemerName=custemer.getCustemerName();
         this.telephone=custemer.getTelephone();
         this.vipGra=custemer.getVipGra();
-        this.pass=custemer.isPass();
+        this.pass=checker.isPass();
 
         this.supplier=checker.getSupplier();
         this.checkerName=checker.getCheckerName();
@@ -66,10 +70,35 @@ public class OrderView {
         this.idCard=checker.getIdCard();
         this.maritalSta=checker.getMaritalSta();
         this.orderDate=checker.getOrderDate();
+        this.hospital=checker.getHospital();
         this.meal=checker.getMeal();
         this.sex=checker.getSex();
         this.expense=checker.isExpense();
         this.report=checker.isReport();
+        this.reportRemark=checker.getReportRemark();
+        this.remark=checker.getRemark();
+        this.checked=checker.isChecked();
+    }
+
+    //构造函数2
+    public OrderView( Checker checker){
+        this.pass=checker.isPass();
+
+        this.supplier=checker.getSupplier();
+        this.checkerName=checker.getCheckerName();
+        this.relationship=checker.getRelationship();
+        this.age=checker.getAge();
+        this.birthday=checker.getBirthday();
+        this.checkerTel=checker.getCheckerTel();
+        this.idCard=checker.getIdCard();
+        this.maritalSta=checker.getMaritalSta();
+        this.orderDate=checker.getOrderDate();
+        this.hospital=checker.getHospital();
+        this.meal=checker.getMeal();
+        this.sex=checker.getSex();
+        this.expense=checker.isExpense();
+        this.report=checker.isReport();
+        this.reportRemark=checker.getReportRemark();
         this.remark=checker.getRemark();
         this.checked=checker.isChecked();
     }
@@ -186,6 +215,14 @@ public class OrderView {
         this.maritalSta = maritalSta;
     }
 
+    public String getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
+    }
+
     public String getMeal() {
         return meal;
     }
@@ -224,6 +261,14 @@ public class OrderView {
 
     public void setReport(boolean report) {
         this.report = report;
+    }
+
+    public String getReportRemark() {
+        return reportRemark;
+    }
+
+    public void setReportRemark(String reportRemark) {
+        this.reportRemark = reportRemark;
     }
 
     public String getRemark() {

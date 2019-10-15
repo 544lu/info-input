@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 /**
  * Created by llc on 2019/9/9.
@@ -47,9 +48,11 @@ public class AddOrderController {
     public String insertChecker(HttpServletRequest request, CheckerView checkerView, Model model) {
         String custemerId = request.getParameter("custemerId");
         DateTime dateTime = new DateTime(checkerView.getOrderDate());
+        Date modifyDate=new Date();
         Checker checker = checkerView.createChecker();
         checker.setCustemerId(custemerId);
         checker.setOrderDate(dateTime.toDate());
+        checker.setModifyDate(modifyDate);
         boolean result = true;
         try {
             insertOrderService.insertChecker(checker);

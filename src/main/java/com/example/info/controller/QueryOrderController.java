@@ -1,9 +1,6 @@
 package com.example.info.controller;
 
-import com.example.info.domain.Custemer;
-import com.example.info.domain.Meal;
-import com.example.info.domain.Order;
-import com.example.info.domain.Record;
+import com.example.info.domain.*;
 import com.example.info.presentation.MealView;
 import com.example.info.presentation.RecordView;
 import com.example.info.presentation.form.QueryOrderParam;
@@ -68,7 +65,7 @@ public class QueryOrderController {
         } catch (Exception e) {
             log.error("查询客户信息时出错");
         }
-        if (custemerList.size() != 0) {
+        if (custemerList != null && custemerList.size() != 0) {
             model.addAttribute("custemerList", custemerList);
         } else {
             model.addAttribute("result", "查询无数据");
@@ -112,8 +109,18 @@ public class QueryOrderController {
         if (columnName.equals("new addition")) {
             view.setColumnName("新建");
         }
+        if (columnName.equals("pass")) {
+            view.setColumnName("是否转赠");
+            if (record.getBeforeVal().equals("false")) {
+                view.setBeforeVal("否");
+                view.setAfterVal("是");
+            } else {
+                view.setBeforeVal("是");
+                view.setAfterVal("否");
+            }
+        }
         if (columnName.equals("supplier")) {
-            view.setColumnName("医院");
+            view.setColumnName("供应商");
             view.setBeforeVal(record.getBeforeVal());
             view.setAfterVal(record.getAfterVal());
         }
@@ -162,6 +169,11 @@ public class QueryOrderController {
             view.setBeforeVal(record.getBeforeVal());
             view.setAfterVal(record.getAfterVal());
         }
+        if (columnName.equals("hospital")) {
+            view.setColumnName("医院");
+            view.setBeforeVal(record.getBeforeVal());
+            view.setAfterVal(record.getAfterVal());
+        }
         if (columnName.equals("meal")) {
             view.setColumnName("体检套餐");
             view.setBeforeVal(record.getBeforeVal());
@@ -201,6 +213,11 @@ public class QueryOrderController {
                 view.setBeforeVal("已出");
                 view.setAfterVal("未出");
             }
+        }
+        if (columnName.equals("reportRemark")) {
+            view.setColumnName("体检报告备注");
+            view.setBeforeVal(record.getBeforeVal());
+            view.setAfterVal(record.getAfterVal());
         }
         if (columnName.equals("remark")) {
             view.setColumnName("备注");

@@ -39,6 +39,11 @@ public class ModifyRecordServiceImpl implements ModifyRecordService {
         ArrayList<Object> beforeVals = new ArrayList<>();
         ArrayList<Object> afterVals = new ArrayList<>();
 
+        if (!old.isPass() == (current.isPass())) {
+            columns.add("pass");
+            beforeVals.add(old.isPass()?"true":"false");
+            afterVals.add(current.isPass()?"true":"false");
+        }
         if (!old.getSupplier().equals(current.getSupplier())) {
             columns.add("supplier");
             beforeVals.add(old.getSupplier());
@@ -85,6 +90,11 @@ public class ModifyRecordServiceImpl implements ModifyRecordService {
             beforeVals.add(dateFormat.format(old.getOrderDate()));
             afterVals.add(dateFormat.format(current.getOrderDate()));
         }
+        if (!old.getHospital().equals(current.getHospital())) {
+            columns.add("hospital");
+            beforeVals.add(old.getHospital());
+            afterVals.add(current.getHospital());
+        }
         if (!old.getMealGra().equals(current.getMealGra())) {
             columns.add("mealGra");
             beforeVals.add(old.getMealGra());
@@ -114,6 +124,11 @@ public class ModifyRecordServiceImpl implements ModifyRecordService {
             columns.add("report");
             beforeVals.add(old.isReport()?"true":"false");
             afterVals.add(current.isReport()?"true":"false");
+        }
+        if (!old.getReportRemark().equals(current.getReportRemark())) {
+            columns.add("reportRemark");
+            beforeVals.add(old.getReportRemark());
+            afterVals.add(current.getReportRemark());
         }
         if (!old.getRemark().equals(current.getRemark())) {
             columns.add("remark");

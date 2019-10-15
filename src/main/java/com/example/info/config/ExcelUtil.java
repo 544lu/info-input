@@ -27,7 +27,7 @@ public class ExcelUtil {
     public void exportExcel(List<OrderView> elementList, HttpServletResponse response) {
         Logger log = LoggerFactory.getLogger(this.getClass());
 
-        String[] titles = {"医院", "客户ID", "客户姓名", "客户电话", "客户VIP等级", "是否转赠", "参检人", "与投保人关系","身份证号", "出生日期", "年龄", "参检人电话", "性别", "婚姻状况", "体检套餐", "预约日期", "到检情况", "报销情况", "体检报告", "备注"};
+        String[] titles = {"供应商", "客户ID", "客户姓名", "客户电话", "客户VIP等级", "是否转赠", "参检人", "与投保人关系","身份证号", "出生日期", "年龄", "参检人电话", "性别", "婚姻状况", "医院","体检套餐", "预约日期", "到检情况", "报销情况", "体检报告", "体检报告备注","备注"};
 
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet();
@@ -97,23 +97,29 @@ public class ExcelUtil {
                     cell.setCellValue(order.getMaritalSta());
                 } else if (j == 14) {
                     Cell cell = row.createCell(14);
+                    cell.setCellValue(order.getHospital());
+                }else if (j == 15) {
+                    Cell cell = row.createCell(15);
                     cell.setCellValue(order.getMeal());
-                } else if (j == 15) {
+                } else if (j == 16) {
                     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                     String dateStr = format.format(order.getOrderDate());
-                    Cell cell = row.createCell(15);
-                    cell.setCellValue(dateStr);
-                } else if (j == 16) {
                     Cell cell = row.createCell(16);
-                    cell.setCellValue(order.isChecked() == true ? "已检" : "未检");
+                    cell.setCellValue(dateStr);
                 } else if (j == 17) {
                     Cell cell = row.createCell(17);
-                    cell.setCellValue(order.isExpense() == true ? "已报销" : "未报销");
+                    cell.setCellValue(order.isChecked() == true ? "已检" : "未检");
                 } else if (j == 18) {
                     Cell cell = row.createCell(18);
-                    cell.setCellValue(order.isReport() == true ? "已出" : "未出");
-                } else {
+                    cell.setCellValue(order.isExpense() == true ? "已报销" : "未报销");
+                } else if (j == 19) {
                     Cell cell = row.createCell(19);
+                    cell.setCellValue(order.isReport() == true ? "已出" : "未出");
+                } else if (j == 20) {
+                    Cell cell = row.createCell(20);
+                    cell.setCellValue(order.getReportRemark());
+                }else {
+                    Cell cell = row.createCell(21);
                     cell.setCellValue(order.getRemark());
                 }
             }

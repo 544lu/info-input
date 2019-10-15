@@ -16,6 +16,8 @@ public class Checker {
     //主键
     @TableId(type = IdType.AUTO)
     private Integer id;
+    //是否转赠
+    private boolean pass;
     //供应商
     private String supplier;
     //参检人姓名
@@ -32,6 +34,8 @@ public class Checker {
     private String birthday;
     //参检人电话
     private String checkerTel;
+    //医院
+    private String hospital;
     //婚姻状况
     private String maritalSta;
     //套餐等级
@@ -46,10 +50,14 @@ public class Checker {
     private boolean expense;
     //体检报告是否已出
     private boolean report;
+    //体检报告备注
+    private String reportRemark;
     //备注
     private String remark;
     //外键
     private String custemerId;
+    //修改时间
+    private Date modifyDate;
 
     public Integer getId() {
         return id;
@@ -61,6 +69,14 @@ public class Checker {
 
     public String getSupplier() {
         return supplier;
+    }
+
+    public boolean isPass() {
+        return pass;
+    }
+
+    public void setPass(boolean pass) {
+        this.pass = pass;
     }
 
     public void setSupplier(String supplier) {
@@ -131,6 +147,14 @@ public class Checker {
         this.maritalSta = maritalSta;
     }
 
+    public String getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
+    }
+
     public String getMealGra() {
         return mealGra;
     }
@@ -179,6 +203,14 @@ public class Checker {
         this.report = report;
     }
 
+    public String getReportRemark() {
+        return reportRemark;
+    }
+
+    public void setReportRemark(String reportRemark) {
+        this.reportRemark = reportRemark;
+    }
+
     public String getRemark() {
         return remark;
     }
@@ -193,5 +225,13 @@ public class Checker {
 
     public void setCustemerId(String custemerId) {
         this.custemerId = custemerId;
+    }
+
+    public Date getModifyDate() {
+        return modifyDate;
+    }
+
+    public void setModifyDate(Date modifyDate) {
+        this.modifyDate = modifyDate;
     }
 }

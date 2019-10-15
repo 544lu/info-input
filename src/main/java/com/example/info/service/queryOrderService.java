@@ -1,6 +1,7 @@
 package com.example.info.service;
 
 import com.example.info.domain.*;
+import com.example.info.presentation.form.ExportParam;
 import com.example.info.presentation.form.QueryOrderParam;
 
 import java.util.Date;
@@ -32,4 +33,6 @@ public interface queryOrderService {
     List<Record> queryRecordById(Integer id);
     //通过parentId查询Meal
     List<Meal> queryByParentId(Integer id);
+    //通过查询参数查询Checker
+    List<Checker> queryCheckerByParam(ExportParam param);
 }

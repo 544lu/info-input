@@ -51,6 +51,27 @@
                   class="layui-form" name="myForm">
 
                 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+                    <legend>供应商选择</legend>
+                </fieldset>
+
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">供应商</label>
+                        <div class="layui-input-inline">
+                            <select id="supplier" name="supplier" lay-filter="supplier" lay-verify="required"
+                                    lay-search="">
+                                <option value="">直接选择或搜索选择</option>
+                                <option value="爱康">爱康</option>
+                                <option value="冯了性">冯了性</option>
+                                <option value="健凯">健凯</option>
+                                <option value="元化">元化</option>
+                                <option value="异地">异地</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
                     <legend>医院及套餐选择</legend>
                 </fieldset>
 
@@ -58,7 +79,7 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">医院</label>
                         <div class="layui-input-inline">
-                            <select id="supplier" name="supplier" lay-filter="supplier" lay-verify="required"
+                            <select id="hospital" name="hospital" lay-filter="hospital" lay-verify="required"
                                     lay-search="">
                                 <option value="">直接选择或搜索选择</option>
                             </select>
@@ -98,6 +119,14 @@
                 </fieldset>
 
                 <div class="layui-form-item">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">是否转赠</label>
+                        <div class="layui-input-block">
+                            <input type="radio" name="pass" value=true title="是">
+                            <input type="radio" name="pass" value=false title="否" checked="">
+                        </div>
+                    </div>
+
                     <div class="layui-inline">
                         <label class="layui-form-label">参检人</label>
                         <div class="layui-input-inline">
@@ -211,6 +240,16 @@
                     </div>
                 </div>
 
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">体检报告备注</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="reportRemark" lay-verify="required"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">备注</label>
                     <div class="layui-input-block">
@@ -246,7 +285,7 @@
             layer = parent.layer === undefined ? layui.layer : parent.layer,
             $ = layui.jquery;
 
-        var supplierText = "";
+        var hospitalText = "";
         var mealGraText = "";
         var areaText = "";
         //异步加载下拉框数据
@@ -259,7 +298,7 @@
                     $.each(data.meals, function (index, item) {
                         $html += "<option value='" + item.id + "'>" + item.mealName + "</option>";
                     });
-                    $("#supplier").append($html);
+                    $("#hospital").append($html);
                     //append后必须从新渲染
                     form.render('select');
                 }
@@ -268,15 +307,15 @@
         });
 
         //监听供应商下拉框
-        form.on('select(supplier)', function (dataObj) {
+        form.on('select(hospital)', function (dataObj) {
             //移除客户VIP等级下拉框所有选项
             $("#mealGra").empty();
             var mealGraHtml = '<option value="">直接选择或搜索选择</option>';
             $("#mealGra").html(mealGraHtml);
             var checkerMealHtml = '<option value="">直接选择或搜索选择</option>';
             $("#meal").html(checkerMealHtml);
-            supplierText = $("#suppiler").find("option:selected").text();
-            var value = $("#supplier").val();
+            hospitalText = $("#hospital").find("option:selected").text();
+            var value = $("#hospital").val();
             //异步加载下拉框数据
             $.post("queryByParentId", {"id": value}, function (data) {
                 if (!data.success) {

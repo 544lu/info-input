@@ -2,6 +2,7 @@ package com.example.info.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.info.domain.*;
+import com.example.info.presentation.form.ExportParam;
 import com.example.info.presentation.form.QueryOrderParam;
 import com.example.info.repository.*;
 import com.example.info.service.queryOrderService;
@@ -163,6 +164,29 @@ public class QueryOrderServiceImpl implements queryOrderService {
         }
         List<Meal> data=mealRepo.selectList(wrapper);
         return data;
+    }
+
+    @Override
+    public List<Checker> queryCheckerByParam(ExportParam param) {
+        QueryWrapper<Checker> wrapper = new QueryWrapper<>();
+        if (param == null) {
+            throw new NullPointerException("查询参数为空");
+        } else {
+            if (StringUtils.isNotBlank(param.getSupplier())) {
+                wrapper.eq("supplier", param.getSupplier());
+            }
+            if (StringUtils.isNotBlank(param.getModifyDate())) {
+                wrapper.eq("modify_date", param.getModifyDate());
+            }
+            if (StringUtils.isNotBlank(param.getExpense())) {
+                wrapper.eq("expense", param.getExpense());
+            }
+            if (StringUtils.isNotBlank(param.getChecked())) {
+                wrapper.eq("checked", param.getChecked());
+            }
+        }
+        List<Checker> checkedList=checkerRepo.selectList(wrapper);
+        return checkedList;
     }
 
 }

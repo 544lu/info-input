@@ -11,11 +11,15 @@
     <script src="layer/layer.js"></script>
     <script>
         function exportFunction() {
-            var startDate = $("input[name='startDate']").val();
-            var endDate = $("input[name='endDate']").val();
-            console.log(startDate);
-            console.log(endDate);
-            window.location.href="exportExcel?startDate="+startDate+"&endDate="+endDate;
+            var supplier = $("#supplier").val();
+            var modifyDate = $("#date").val();
+            var expense = $("#expense").val();
+            var checked = $("#checked").val();
+            if (supplier == "" && modifyDate == "" && expense == "" && checked == "") {
+                layer.msg("请输入有效信息");
+            } else {
+                window.location.href = "exportExcel?supplier=" + supplier + "&modifyDate=" + modifyDate + "&expense=" + expense + "&checked=" + checked;
+            }
         }
     </script>
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
@@ -24,16 +28,48 @@
 <div class="layui-form" style="margin-top:10px;">
     <div class="layui-form-item">
         <div class="layui-inline">
-            <label class="layui-form-label">日期范围</label>
+            <label class="layui-form-label">供应商</label>
+            <div class="layui-input-inline">
+                <select name="supplier" id="supplier" lay-verify="required" lay-search="">
+                    <option value="">直接选择或搜索选择</option>
+                    <option value="爱康">爱康</option>
+                    <option value="冯了性">冯了性</option>
+                    <option value="健凯">健凯</option>
+                    <option value="元化">元化</option>
+                    <option value="异地">异地</option>
+                </select>
+            </div>
         </div>
         <div class="layui-inline">
-            <input type="text" name="startDate" class="layui-input test-item" placeholder="yyyy-MM-dd">
+            <label class="layui-form-label">导入日期</label>
+            <div class="layui-input-inline">
+                <input type="text" name="modifydate" id="date" lay-verify="date" placeholder="yyyy-MM-dd"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">是否已报销</label>
+            <div class="layui-input-inline">
+                <select name="expense" id="expense" lay-verify="required" lay-search="">
+                    <option value="">直接选择或搜索选择</option>
+                    <option value="1">已报销</option>
+                    <option value="0">未报销</option>
+                </select>
+            </div>
         </div>
         <div class="layui-inline">
-            <p>-</p>
-        </div>
-        <div class="layui-inline">
-            <input type="text" name="endDate" class="layui-input test-item" placeholder="yyyy-MM-dd">
+            <label class="layui-form-label">是否到检</label>
+            <div class="layui-input-inline">
+                <select name="checked" id="checked" lay-verify="required" lay-search="">
+                    <option value="">直接选择或搜索选择</option>
+                    <option value="1">到检</option>
+                    <option value="0">未到检</option>
+                </select>
+            </div>
         </div>
     </div>
 </div>
@@ -54,6 +90,21 @@
                 elem: this
                 , trigger: 'click'
             });
+        });
+    });
+
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
+
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
         });
     });
 </script>

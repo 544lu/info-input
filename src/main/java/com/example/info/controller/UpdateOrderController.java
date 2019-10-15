@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 /**
  * Created by llc on 2019/9/9.
@@ -45,8 +46,10 @@ public class UpdateOrderController {
     public String updateOrder(CheckerView checkerView, HttpServletRequest request, Model model) {
         String orderDate=checkerView.getOrderDate();
         DateTime dateTime=new DateTime(orderDate);
+        Date modifyDate=new Date();
         Checker checker=checkerView.createChecker();
         checker.setOrderDate(dateTime.toDate());
+        checker.setModifyDate(modifyDate);
         if (checker == null) {
             throw new NullPointerException("请求参数为空");
         } else {

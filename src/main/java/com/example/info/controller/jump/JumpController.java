@@ -55,6 +55,7 @@ public class JumpController {
                 checker = queryOrderService.queryCheckerInfo(custemerId);
             } catch (Exception e) {
                 log.error("查询预约信息时出错");
+                e.printStackTrace();
             }
             if (checker != null) {
                 if(action!=null&&action.equals("modify")){

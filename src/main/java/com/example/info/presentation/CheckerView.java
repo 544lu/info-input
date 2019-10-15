@@ -8,6 +8,8 @@ import com.example.info.domain.Checker;
  */
 public class CheckerView {
 
+    //是否转赠
+    private boolean pass;
     //供应商
     private String supplier;
     //参检人姓名
@@ -26,6 +28,8 @@ public class CheckerView {
     private String checkerTel;
     //婚姻状况
     private String maritalSta;
+    //医院
+    private String hospital;
     //套餐等级
     private String mealGra;
     //体检套餐
@@ -38,6 +42,8 @@ public class CheckerView {
     private boolean expense;
     //体检报告是否已出
     private boolean report;
+    //体检报告备注
+    private String reportRemark;
     //备注
     private String remark;
     //外键
@@ -45,6 +51,8 @@ public class CheckerView {
 
     public Checker createChecker() {
         Checker checker = new Checker();
+        checker.setPass(pass);
+        checker.setSupplier(supplier);
         checker.setAge(age);
         checker.setBirthday(birthday);
         checker.setChecked(checked);
@@ -60,11 +68,12 @@ public class CheckerView {
 
         checker.setMeal(meal);
         checker.setRemark(remark);
+        checker.setReportRemark(reportRemark);
         checker.setReport(report);
         checker.setSex(sex);
-        //对供应商进行转换
-        String supplierReal = transformSupplier(supplier);
-        checker.setSupplier(supplierReal);
+        //对医院进行转换
+        String hospitalReal = transformHospital(hospital);
+        checker.setHospital(hospitalReal);
 
         return checker;
     }
@@ -127,7 +136,7 @@ public class CheckerView {
         }
     }
 
-    public String transformSupplier(String current) {
+    public String transformHospital(String current) {
         if (current.equals("1")) {
             return "健凯医疗";
         } else if (current.equals("2")) {
@@ -149,6 +158,14 @@ public class CheckerView {
         }else {
             return current;
         }
+    }
+
+    public boolean isPass() {
+        return pass;
+    }
+
+    public void setPass(boolean pass) {
+        this.pass = pass;
     }
 
     public String getSupplier() {
@@ -223,6 +240,14 @@ public class CheckerView {
         this.maritalSta = maritalSta;
     }
 
+    public String getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
+    }
+
     public String getMealGra() {
         return mealGra;
     }
@@ -269,6 +294,14 @@ public class CheckerView {
 
     public void setReport(boolean report) {
         this.report = report;
+    }
+
+    public String getReportRemark() {
+        return reportRemark;
+    }
+
+    public void setReportRemark(String reportRemark) {
+        this.reportRemark = reportRemark;
     }
 
     public String getRemark() {
