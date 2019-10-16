@@ -87,14 +87,14 @@ public class AddOrderController {
     @RequestMapping(value = "insertCustemer", method = RequestMethod.POST)
     public String insertOrder(Custemer custemer, Model model) {
         try {
-            insertOrderService.insertCustemer(custemer);
+            //insertOrderService.insertCustemer(custemer);
         } catch (Exception e) {
             log.error("添加客户信息时出错");
             e.printStackTrace();
             model.addAttribute("result", "falure");
             return "frame";
         }
-        model.addAttribute("result", "success");
+        model.addAttribute("result", "falure");
         return "frame";
     }
 }
