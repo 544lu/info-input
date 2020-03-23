@@ -1,6 +1,6 @@
 package com.example.info.controller;
 
-import com.example.info.config.ExcelUtil;
+import com.example.info.common.util.ExcelUtil;
 import com.example.info.domain.Checker;
 import com.example.info.domain.Custemer;
 import com.example.info.presentation.OrderView;

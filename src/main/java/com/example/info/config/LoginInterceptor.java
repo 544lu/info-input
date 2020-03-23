@@ -1,4 +1,4 @@
-package com.example.info.common;
+package com.example.info.config;
 
 import com.example.info.domain.User;
 import org.slf4j.Logger;
